@@ -15,17 +15,18 @@ def process_data(data: str | None) -> list[str]:
     result = data.split(",")
 
     # 2. Sửa Security: Lấy mật khẩu an toàn từ biến môi trường
-    password = os.getenv("SECRET_PASSWORD", "default_secure_fallback")
+    password = os.getenv("SECRET_PASSWORD")
 
     # 3. Sửa Code Smell: Bắt lỗi tường minh (tránh bare except)
     try:
         risky_operation()
-    except Exception as e:
+    except Exception:
         # Xử lý ngoại lệ cụ thể
         pass
 
     # 4. Sửa Security Hotspot: Dùng thuật toán băm SHA-256 mạnh
     if password:
         secure_hash = hashlib.sha256(password.encode()).hexdigest()
+        result.append(secure_hash)
 
     return result

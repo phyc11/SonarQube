@@ -33,10 +33,6 @@ jobs:
         run: |
           pytest --cov=src --cov-report=xml
 
-      - name: Fix coverage mapping path
-        run: |
-          sed -i 's/filename="app.py"/filename="src\/app.py"/g' coverage.xml
-          sed -i 's/filename="__init__.py"/filename="src\/__init__.py"/g' coverage.xml
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v6
