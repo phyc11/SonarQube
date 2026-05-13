@@ -1,14 +1,15 @@
 # DevOps CI/CD Pipeline & Static Analysis (SonarQube)
 
-Dự án này minh chứng luồng tích hợp hệ thống kiểm định chất lượng mã nguồn liên tục (DevOps CI/CD Pipeline) sử dụng **FastAPI**, **pytest**, **SonarQube Scanner** và **GitHub Actions**.
+Dự án này tích hợp hệ thống kiểm định chất lượng mã nguồn liên tục (DevOps CI/CD Pipeline) sử dụng **FastAPI**, **pytest**, **SonarQube Scanner** và **GitHub Actions**.
 
 ---
 
-## Các tính năng nổi bật (Key Highlights)
-- **Kiểm định chất lượng nghiêm ngặt**: Đạt chất lượng **Hạng A** trên cả 3 trụ cột Bảo mật (Security), Độ tin cậy (Reliability) và Khả năng bảo trì (Maintainability).
-- **Độ bao phủ tối đa**: Cấu hình `monkeypatch` rẽ nhánh phủ **100%** các kịch bản thực tế của mã nguồn nhạy cảm.
-- **Tối ưu hóa Docker Scanner**: Giải quyết triệt để rào cản hệ thống tập tin (File System) giữa Windows và Linux bằng cơ chế xuất đường dẫn tương đối `relative_files = true` trong `pyproject.toml`.
-- **Quality Gate Tùy chỉnh**: Chặn đứng việc triển khai nếu xuất hiện *Bugs mới*, *Lỗ hổng mới*, hoặc *Coverage dưới 80%*.
+## Tiêu chuẩn chất lượng (Quality Gate Rules)
+Dự án áp dụng bộ quy tắc kiểm định mã nguồn nghiêm ngặt trên SonarQube:
+- **New Bugs**: `0` (Không chấp nhận lỗi logic mới)
+- **New Vulnerabilities**: `0` (Không chấp nhận lỗ hổng bảo mật mới)
+- **New Code Coverage**: `>= 80%` (Độ bao phủ Unit Test tối thiểu 80%)
+- **New Duplicated Lines**: `<= 3%` (Tỷ lệ lặp lại mã nguồn không quá 3%)
 
 ---
 
@@ -32,7 +33,6 @@ Trước mỗi lần phân tích, hệ thống cần file `coverage.xml` mới n
 ```powershell
 pytest --cov=src --cov-report=xml
 ```
-> Nhờ cấu hình tối ưu trong `pyproject.toml`, file xuất ra sử dụng đường dẫn tương đối cực kỳ sạch sẽ (`<source>src</source>`).
 
 ### 4. Quét mã nguồn nội bộ với SonarScanner CLI
 Thực thi trực tiếp phân tích bằng Docker Container được mount vào thư mục hiện tại:
