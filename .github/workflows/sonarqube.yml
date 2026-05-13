@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Bắt buộc để SonarQube phân tích toàn diện lịch sử Git
+          fetch-depth: 0 
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -39,7 +39,7 @@ jobs:
           sed -i 's/filename="__init__.py"/filename="src\/__init__.py"/g' coverage.xml
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v4
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

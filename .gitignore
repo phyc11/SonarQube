@@ -1,0 +1,26 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# SonarQube Scanner cache
+.scannerwork/
+
+# Virtual Environments
+venv/
+env/
+.env
+
+# Custom Binaries/Executables
+ngrok.exe
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.swp

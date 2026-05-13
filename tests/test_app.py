@@ -21,3 +21,10 @@ def test_add_endpoint():
     response = client.get("/add?a=5&b=7")
     assert response.status_code == 200
     assert response.json() == {"result": 12}
+
+
+def test_process_data():
+    from src.intentional_issues import process_data
+
+    assert process_data(None) == []
+    assert process_data("a,b,c") == ["a", "b", "c"]

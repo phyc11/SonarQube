@@ -10,7 +10,7 @@ File workflow đã được tạo sẵn tại đường dẫn chuẩn: `.github/
 2. **Checkout**: Tải toàn bộ lịch sử commit (`fetch-depth: 0`) để SonarQube phân tích chính xác các thay đổi.
 3. **Test & Coverage**: Cài đặt môi trường Python 3.11, chạy `pytest --cov=src` sinh báo cáo.
 4. **Chuẩn hóa Coverage**: Dùng lệnh `sed` tự động sửa mapping path từ `filename="app.py"` sang `filename="src/app.py"` để tránh lỗi Coverage 0% trên server.
-5. **Scan**: Thực thi action `sonarqube-scan-action@v4` đẩy mã nguồn và báo cáo lên server.
+5. **Scan**: Thực thi action `sonarsource/sonarqube-scan-action@v6` đẩy mã nguồn và báo cáo lên server.
 6. **Quality Gate Check**: Thực thi action `sonarqube-quality-gate-action@v1` chờ kết quả kiểm định. Nếu Quality Gate thất bại (chứa lỗi nghiêm trọng hoặc coverage thấp), workflow sẽ tự động dừng và báo lỗi (Failed).
 
 ## 2. Hướng dẫn cấu hình Secrets trên GitHub
